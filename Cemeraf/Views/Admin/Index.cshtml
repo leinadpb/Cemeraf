@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="far fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Total visitas</p>
+                            0
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <hr />
+                    <div class="stats">
+                        Visitas a la página principal
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="far fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Citas creadas</p>
+                            0
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <hr />
+                    <div class="stats">
+                        <i class="far fa-eye"></i> <a href="#">Ver todas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="far fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Especialidades</p>
+                            0
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <hr />
+                    <div class="stats">
+                        <i class="far fa-eye"></i> <a asp-controller="Specialties" asp-action="Index">Ver todas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="far fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Doctores</p>
+                            0
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <hr />
+                    <div class="stats">
+                        <i class="far fa-eye"></i> <a asp-controller="Doctors" asp-action="Index">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div align="center">
+    <div class="card">
+        <div style="padding-top:1.5em;">
+            <h5 class="card-header"><span style="font-weight:600;font-size:2.2rem;">Datos personales</span></h5>
+        </div>
+        <div class="card-body" style="padding-bottom:1.5em;">
+            <form>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Nombre</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Fecha nacimiento</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Foto de perfil</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Apellido</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Sexo</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Nacionalidad</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <button type="submit" class="btn btn-outline-secondary">Actualizar datos</button>
+            </form>
+        </div>
+    </div>
+</div>

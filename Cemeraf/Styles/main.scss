@@ -1,0 +1,52 @@
+
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+//
+// Grid mixins
+//
+
+@import "bootstrap/mixins/breakpoints";
+
+
+// including variables and mixins
+@import "theme/variables";
+@import "theme/mixins";
+@import "theme/flexbox";
+@import "theme/reset";
+
+
+// Custom Scss 
+@import "theme/elements";
+@import "theme/header";
+@import "theme/home";
+@import "theme/footer";
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+.box-title {
+    padding: 1em;
+    margin-bottom: 1em;
+
+    span {
+        font-size: 2rem;
+        font-weight: 600;
+        font-family: 'Roboto Slab', serif;
+    }
+}
+.box-content{
+    margin-bottom:3em;
+    margin-top:3em;
+}
+
+.myLogoutButton{
+    -webkit-transition:all ease-in-out 0.2s;
+}
+.myLogoutButton:hover {
+    text-decoration: none;
+    border: 1px solid #555151;
+    border-radius: 10px;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}

@@ -1,0 +1,302 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-center">
+            <div class="banner-content col-lg-6 col-md-12">
+                <h1 class="text-uppercase">
+                    CLINICA MEDICA <br>
+                    por excelencia
+                </h1>
+                <p>
+                    Eres importante para nosotros, por eso valoramos tu tiempo! Haz una cita a través de nuestra plataforma y ahórrate tiempo y esfuerzo.
+                </p>
+                <a class="primary-btn2 mt-20 text-uppercase" asp-controller="Admin" asp-action="Index">Hacer una cita<span class="lnr lnr-arrow-right"></span></a>
+            </div>
+            <div class="col-lg-6 d-flex align-self-end img-right">
+                <img class="img-fluid" src="" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start feature Area -->
+<section class="feature-area section-gap" id="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="single-feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="lnr lnr-rocket"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA NEURO ORTOPEDIA</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="lnr lnr-chart-bars"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA DE REEMPLAZO ARTICULAR</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-feature d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-bug"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA DE MEDICINA DEPORTIVA Y ATROSCOPIA</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="single-feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="lnr lnr-heart-pulse"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA DE MANO, CODO Y HOMBRO</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="lnr lnr-paw"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA DE RECONSTRUCCION DE MIEMBROS INFERIORES</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-feature d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-users"></span>
+                    </div>
+                    <div class="desc">
+                        <h4 class="text-uppercase">CLINICA PONSITI Y PIE EQUINO VARO</h4>
+                        <p>
+                            inappropriate behavior is often laughed off as “boys will be boys,” <br> women face higher conduct women face higher conduct.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+<!-- Start about Area -->
+<section class="about-area" id="contact">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-end align-items-center">
+            <div class="col-lg-6 col-md-12 about-left no-padding">
+                <img class="img-fluid" src="~/images/about-img.jpg" alt="">
+            </div>
+            <div class="col-lg-6 col-md-12 about-right no-padding">
+                <div style="padding-top:2em;">
+                    <h1>Contacto</h1>
+                </div>
+                <form class="booking-form" id="myForm" action="donate.php">
+                    <div class="row">
+                        <div class="col-lg-12 d-flex flex-column">
+                            <input name="email" placeholder="Correo electrónico" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" class="form-control mt-20" type="email" required>
+                        </div>
+                        <div class="col-lg-6 d-flex flex-column">
+                            <input name="firstname" placeholder="Nombre" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre'" class="form-control mt-20" type="text" required>
+                        </div>
+                        <div class="col-lg-6 d-flex flex-column">
+                            <input name="lastname" placeholder="Apellido" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'" class="form-control mt-20" type="text" required>
+                        </div>
+                        <div class="col-lg-12 flex-column">
+                            <textarea class="form-control mt-20" name="message" placeholder="Mensaje" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mensaje'" required=""></textarea>
+                        </div>
+
+                        <div class="col-lg-12 d-flex justify-content-end send-btn" style="padding-bottom:1em;">
+                            <button class="submit-btn primary-btn mt-20 text-uppercase ">Enviar mensaje<span class="lnr lnr-arrow-right"></span></button>
+                        </div>
+
+                        <div class="alert-msg"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End about Area -->
+<!-- Start consultans Area -->
+<section class="consultans-area section-gap" id="us">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 pb-80 header-text">
+                <h1>Médicos Especializados</h1>
+                <p>
+                    ¡Contamos con los mejores médicos especializados del país!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 vol-wrap">
+                <div class="single-con">
+                    <div class="content">
+                        <a href="#" target="_blank">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="~/images/c1.jpg" alt="">
+                            <div class="content-details fadeIn-bottom">
+                                <h4>Andy Florence</h4>
+                                <p>
+                                    CEMERAF
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 vol-wrap">
+                <div class="single-con">
+                    <div class="content">
+                        <a href="#" target="_blank">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="~/images/c2.jpg" alt="">
+                            <div class="content-details fadeIn-bottom">
+                                <h4>Andy Florence</h4>
+                                <p>
+                                    CEMERAF
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 vol-wrap">
+                <div class="single-con">
+                    <div class="content">
+                        <a href="#" target="_blank">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="~/images/c3.jpg" alt="">
+                            <div class="content-details fadeIn-bottom">
+                                <h4>Andy Florence</h4>
+                                <p>
+                                    CEMERAF
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 vol-wrap">
+                <div class="single-con">
+                    <div class="content">
+                        <a href="#" target="_blank">
+                            <div class="content-overlay"></div>
+                            <img class="content-image img-fluid d-block mx-auto" src="~/images/c4.jpg" alt="">
+                            <div class="content-details fadeIn-bottom">
+                                <h4>Andy Florence</h4>
+                                <p>
+                                    CEMERAF
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End consultans Area -->
+<!-- Start fact Area 
+<section class="facts-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 single-fact">
+                <h2 class="counter">2536</h2>
+                <p class="text-uppercase">Clients Served</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-fact">
+                <h2 class="counter">6784</h2>
+                <p class="text-uppercase">X-rays Done</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-fact">
+                <h2 class="counter">1059</h2>
+                <p class="text-uppercase">Worldwide stuff</p>
+            </div>
+            <div class="col-lg-3 col-md-6 single-fact">
+                <h2 class="counter">2239</h2>
+                <p class="text-uppercase">Lives Saved</p>
+            </div>
+        </div>
+    </div>
+</section>
+ end fact Area -->
+<!-- start footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4  col-md-6">
+                <div class="single-footer-widget mail-chimp">
+                    <h6 class="mb-20">Contáctanos</h6>
+                    <p>
+                        Av. José Contreras. Entre Av. Abraham Lincoln y Av. Jiménez Moya.
+                    </p>
+                    <h3>1+(829) 988-8135</h3>
+                    <h3>1+(829) 988-8135</h3>
+                </div>
+            </div>
+            <div class="col-lg-6  col-md-12">
+                <div class="single-footer-widget newsletter">
+                    <h6>Boletín de informaciones</h6>
+                    <p>Te enviaremos ofertas, noticias, consejos de salud y más, ¡sin costo alguno!</p>
+                    <div id="mc_embed_signup">
+                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+
+                            <div class="form-group row" style="width: 100%">
+                                <div class="col-lg-8 col-md-12">
+                                    <input name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introduzca su email '" required="" type="email">
+                                    <div style="position: absolute; left: -5000px;">
+                                        <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-12">
+                                    <button class="nw-btn primary-btn">Subscribirme<span class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                            </div>
+                            <div class="info"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row footer-bottom d-flex justify-content-between">
+            <p class="col-lg-8 col-sm-12 footer-text m-0">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> Todos los derechos reservados | Cemeraf &copy;
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            <div class="col-lg-4 col-sm-12 footer-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->

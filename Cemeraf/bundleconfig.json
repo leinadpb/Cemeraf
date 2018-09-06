@@ -1,0 +1,68 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/main.min.css",
+    "inputFiles": [
+      "Styles/main.scss"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/fontawesome.js",
+    "inputFiles": [
+      "node_modules/fontawesome/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bootstrap.js",
+    "inputFiles": [
+      "node_modules/bootstrap/dist/js/bootstrap.js"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/popper.js",
+    "inputFiles": [
+      "node_modules/popper.js/dist/popper.js"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.js",
+    "inputFiles": [
+      "node_modules/jquery/dist/jquery.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/swiper.js",
+    "inputFiles": [
+      "node_modules/swiper/dist/js/swiper.js"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/css/swiper.css",
+    "inputFiles": [
+      "node_modules/swiper/dist/css/swiper.css"
+    ],
+    "minify": { "enabled": true }
+  }
+]
