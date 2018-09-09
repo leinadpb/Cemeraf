@@ -39,7 +39,21 @@ namespace Cemeraf.Services
 
         public Task<Cita> Delete(Cita cita)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => {
+
+                try
+                {
+                    _context.Citas.Remove(cita);
+                    _context.SaveChanges();
+                    return cita;
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine($"Error deleting cita: {exp}");
+                }
+
+                return null;
+            });
         }
 
         public Task<IEnumerable<Cita>> GetAll()
@@ -49,9 +63,19 @@ namespace Cemeraf.Services
             });
         }
 
+        public Task<IEnumerable<Cita>> GetAllByUser(string id)
+        {
+            return Task.Run(() => {
+                CemerafUser user = _context.CemerafUsers.Where(cu => cu.Email.Equals(id)).FirstOrDefault();
+                return _context.Citas.Where(c => c.CemerafUser == user).AsEnumerable();
+            });
+        }
+
         public Task<Cita> GetById(int id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => {
+                return _context.Citas.Where(c => c.CitaId == id).First();
+            });
         }
 
         public Task<Cita> Modify(Cita cita)

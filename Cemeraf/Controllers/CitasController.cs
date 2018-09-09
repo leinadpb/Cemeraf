@@ -15,6 +15,7 @@ namespace Cemeraf.Controllers
     public class CitasController : Controller
     {
         private readonly SignInManager<CemerafUser> SignInManager;
+        private readonly UserManager<CemerafUser> UserManager;
         private readonly UserService UserService;
         private readonly CitasService CitasService;
         private readonly DoctorService DoctorsService;
@@ -22,17 +23,20 @@ namespace Cemeraf.Controllers
         public CitasController(SignInManager<CemerafUser> signInManager,
             UserService userService,
             CitasService citasService,
-            DoctorService doctorsService)
+            DoctorService doctorsService,
+            UserManager<CemerafUser> userManager)
         {
             SignInManager = signInManager;
             UserService = userService;
             CitasService = citasService;
             DoctorsService = doctorsService;
+            UserManager = userManager;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Cita> citas = CitasService.GetAll().Result;
+            string username = UserManager.GetUserAsync(HttpContext.User).Result.Email;
+            IEnumerable<Cita> citas = CitasService.GetAllByUser(username).Result;
             return View(citas);
         }
 
@@ -77,6 +81,8 @@ namespace Cemeraf.Controllers
                     }
                 }
             }
+            CemerafUser currentUser = UserManager.GetUserAsync(HttpContext.User).Result;
+            cita.CemerafUser = currentUser;
             var savedCita = CitasService.Add(cita).Result;
             if (savedCita != null)
             {
@@ -117,9 +123,16 @@ namespace Cemeraf.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            return View();
+            Cita cita = CitasService.GetById(id).Result;
+            Cita deletedCita = CitasService.Delete(cita).Result;
+            if(deletedCita != null)
+            {
+                ViewBag.Success = "Cita eliminada.";
+            }
+            return RedirectToAction("Index");
         }
     }
 }
