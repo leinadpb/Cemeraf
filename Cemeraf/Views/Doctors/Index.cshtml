@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Doctor>
+@{
+    ViewData["Title"] = "Ver doctores";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <h2><span style="margin-left:1em;">Ver doctores<span style="font-size:2rem;font-weight:100;"> <a asp-controller="Doctors" asp-action="Create">Agregar</a></span></span></h2>
+</div>
+<br />
+<div style="display:flex;flex-direction:row;">
+    @foreach (var doctor in Model)
+    {
+        <div class="card doctorBox" style="width: 28rem;margin-right:2em;">
+            <img class="card-img-top" src="~/images/profile-image.png" alt="Doctor" style="width:100%;height:auto">
+            <div class="card-body" style="padding:2em;">
+                <h5 class="card-title"><span style="font-weight:600;">@doctor.FullName</span></h5>
+                <p class="card-text">@doctor.Description</p>
+                <hr />
+                <a href="#" class="btn btn-primary btn-block">Ver detalles</a>
+            </div>
+        </div>
+    }
+</div>

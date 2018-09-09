@@ -46,6 +46,8 @@ namespace Cemeraf
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<UserService>();
+            services.AddScoped<CitasService>();
+            services.AddScoped<DoctorService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

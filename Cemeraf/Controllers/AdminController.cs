@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cemeraf.Controllers
 {
-    [Authorize]
+    [Authorize()]
     public class AdminController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
+
     }
 }

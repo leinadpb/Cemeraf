@@ -16,12 +16,24 @@ namespace Cemeraf.Controllers
     {
         private readonly SignInManager<CemerafUser> SignInManager;
         private readonly UserService UserService;
+        private readonly CitasService CitasService;
+        private readonly DoctorService DoctorsService;
 
         public CitasController(SignInManager<CemerafUser> signInManager,
-            UserService userService)
+            UserService userService,
+            CitasService citasService,
+            DoctorService doctorsService)
         {
             SignInManager = signInManager;
             UserService = userService;
+            CitasService = citasService;
+            DoctorsService = doctorsService;
+        }
+
+        public IActionResult Index()
+        {
+            IEnumerable<Cita> citas = CitasService.GetAll().Result;
+            return View(citas);
         }
 
         public IActionResult Create()
@@ -36,8 +48,42 @@ namespace Cemeraf.Controllers
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
                 Sex = user.Sex,
-                Age = userAge
+                Age = userAge,
+                Doctors = DoctorsService.GetAll().Result.ToList()
             });
+        }
+
+        [HttpPost]
+        public IActionResult Create(string Description, Int32? DoctorId, DateTime DateAssigned)
+        {
+            Cita cita = new Cita();
+            if (Description != null && !Description.Equals("") && DateAssigned != null)
+            {
+                cita.Description = Description;
+                cita.Doctor = null;
+                cita.Status = "PENDING";
+                cita.Approved = false;
+                cita.DateRequested = DateTime.Now;
+                cita.DateAssigned = DateAssigned;
+            }
+            if(DoctorId != null)
+            {
+                if(DoctorId > 0)
+                {
+                    Doctor doc = DoctorsService.GetById(DoctorId).Result;
+                    if(doc != null)
+                    {
+                        cita.Doctor = doc;
+                    }
+                }
+            }
+            var savedCita = CitasService.Add(cita).Result;
+            if (savedCita != null)
+            {
+                ViewBag.Success = "La cita se ha registrado, dentro de poco minutos un personal le estará dando seguimiento. ¡Gracias por su tiempo!";
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         private int GetUserAge(DateTime birthdate)

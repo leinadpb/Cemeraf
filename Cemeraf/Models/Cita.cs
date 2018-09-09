@@ -24,7 +24,7 @@ namespace Cemeraf.Models
 
         public CemerafUser CemerafUser { get; set; }
 
-        public List<Cita> Citas { get; set; }
+       // public List<Cita> Citas { get; set; }
 
 
 

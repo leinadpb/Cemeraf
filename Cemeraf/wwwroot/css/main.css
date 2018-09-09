@@ -2043,3 +2043,6 @@ p {
   border-radius: 10px;
   padding-left: 0.4em;
   padding-right: 0.4em; }
+
+.doctorBox {
+  margin: 2em; }
