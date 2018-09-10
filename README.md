@@ -7,7 +7,7 @@
 ##### Usuario Cemeraf
 - [ ] Modelo de servicios. Despliegue de servicios en página principal. Cambiar íconos de servicios.
 - [ ] Envío de emails por la página principal.
-- [ ] Slider de doctores en la página principal.
+- [x] Slider de doctores en la página principal.
 - [ ] Cambiar número y dirección en el footer de la página principal.
 - [ ] Arreglar página de "Olvidaste la contraseña?"
 - [ ] Quitar opciones de menú en las páginas de login/register/ y similares.

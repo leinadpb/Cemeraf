@@ -1,9 +1,10 @@
 ﻿[
   {
-    "outputFileName": "wwwroot/css/main.min.css",
+    "outputFileName": "wwwroot/css/main.css",
     "inputFiles": [
-      "Styles/main.scss"
-    ]
+      "wwwroot/css/main.css"
+    ],
+    "minify": {"enabled": true}
   },
   {
     "outputFileName": "wwwroot/js/fontawesome.js",
@@ -64,5 +65,26 @@
       "node_modules/swiper/dist/css/swiper.css"
     ],
     "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/css/glide.min.css",
+    "inputFiles": [
+      "node_modules/@glidejs/glide/dist/css/glide.core.css"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/css/glide-theme.min.css",
+    "inputFiles": [
+      "node_modules/@glidejs/glide/dist/css/glide.theme.css"
+    ],
+    "minify": { "enabled": true }
+  },
+  {
+    "outputFileName": "wwwroot/js/glide.min.js",
+    "inputFiles": [
+      "node_modules/@glidejs/glide/dist/glide.js"
+    ],
+    "minify": {"enabled": true}
   }
 ]
