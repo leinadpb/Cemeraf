@@ -11,49 +11,55 @@
 <div class="container-fluid">
     <div class="card">
         <div class="content">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            <span style="font-weight:600;">Fecha</span>
-                        </th>
-                        <th>
-                            <span style="font-weight:600;">Descripción</span>
-                        </th>
-                        <th>
-                            <span style="font-weight:600;">Estado</span>
-                        </th>
-                        <th>
-                            <span style="font-weight:600;">Doctor asignado</span>
-                        </th>
-                        <th>
-                            <span style="font-weight:600;">Acciones</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in Model)
-                    {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>@c.DateRequested</td>
-                            <td>@c.Description</td>
-                            <td>@c.Status</td>
-                            <td>@c.DoctorId</td>
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm">Modificar</a>
-                                <a asp-controller="Citas" asp-action="Delete" asp-route-id="@c.CitaId" class="btn btn-secondary btn-sm">Eliminar</a>
-                            </td>
+                            <th>
+                                <span style="font-weight:600;">Fecha</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Descripción</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Estado</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Doctor asignado</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Acciones</span>
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model)
+                        {
+                            <tr>
+                                <td>@c.DateRequested</td>
+                                <td>@c.Description</td>
+                                <td>@c.Status</td>
+                                <td>@c.DoctorId</td>
+                                <td>
+                                    <button asp-controller="Citas" asp-action="Update" asp-route-id="@c.CitaId" class="btn btn-primary btn-sm">Modificar</button>
+                                    <button onclick="PreDeleteCita(@c.CitaId)" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                        Eliminar
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
             <div class="footer">
                 <hr />
                 <div class="stats">
                     @Model.Count() citas en total.
                 </div>
             </div>
-            </div>
         </div>
     </div>
 </div>
+

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cemeraf.Models;
 using Cemeraf.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Cemeraf.Services
 {
     public class CitasService : ICitas
@@ -15,14 +17,32 @@ namespace Cemeraf.Services
             _context = ctx;
         }
 
-        public Task<Cita> Add(Cita cita)
+        public Task<Cita> Add(Cita cita, string userId)
         {
+            // a user cannot add more than 3 citas with PENDING status!
             return Task.Run(() => {
                 try
                 {
-                    _context.Citas.Add(cita);
-                    _context.SaveChanges();
-                    return cita;
+                    //Get user total dates in PENDING status
+                    var user = _context.CemerafUsers.Where(u => u.Id.Equals(userId))
+                            .Include(u => u.Citas)
+                            .First();
+                    int c = 0;
+                    foreach(Cita ct in user.Citas)
+                    {
+                        if (ct.Status.Equals("PENDING"))
+                        {
+                            c++;
+                        }
+                    }
+                    int totalCitas = c;
+                    if(!(totalCitas >= 3))
+                    {
+                        _context.Citas.Add(cita);
+                        _context.SaveChanges();
+                        return cita;
+                    }
+                    return null;
                 }
                 catch (Exception exp)
                 {

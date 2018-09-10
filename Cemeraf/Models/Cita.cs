@@ -10,8 +10,10 @@ namespace Cemeraf.Models
     {
         [Key]
         public int CitaId { get; set; }
+        [Required(ErrorMessage = "* este campo es obligatorio.")]
         public string Description { get; set; }
         public string Status { get; set; }
+        [Required(ErrorMessage = "* este campo es obligatorio.")]
         [DataType(DataType.Date)]
         public DateTime DateRequested { get; set; }
         [DataType(DataType.Date)]

@@ -48,11 +48,6 @@ namespace Cemeraf.Controllers
             int userAge = GetUserAge(user.Birthdate);
 
             return View(new CreateCitaViewModel {
-                Email = user.Email,
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                Sex = user.Sex,
-                Age = userAge,
                 Doctors = DoctorsService.GetAll().Result.ToList()
             });
         }
@@ -70,12 +65,12 @@ namespace Cemeraf.Controllers
                 cita.DateRequested = DateTime.Now;
                 cita.DateAssigned = DateAssigned;
             }
-            if(DoctorId != null)
+            if (DoctorId != null)
             {
-                if(DoctorId > 0)
+                if (DoctorId > 0)
                 {
                     Doctor doc = DoctorsService.GetById(DoctorId).Result;
-                    if(doc != null)
+                    if (doc != null)
                     {
                         cita.Doctor = doc;
                     }
@@ -83,13 +78,17 @@ namespace Cemeraf.Controllers
             }
             CemerafUser currentUser = UserManager.GetUserAsync(HttpContext.User).Result;
             cita.CemerafUser = currentUser;
-            var savedCita = CitasService.Add(cita).Result;
+            var savedCita = CitasService.Add(cita, currentUser.Id).Result;
             if (savedCita != null)
             {
                 ViewBag.Success = "La cita se ha registrado, dentro de poco minutos un personal le estará dando seguimiento. ¡Gracias por su tiempo!";
                 return RedirectToAction("Index");
             }
-            return View();
+            ViewBag.Error = "No puedes tener más de tres citas en estado PENDIENTE. Espera algunos minutos para volver a solicitar otra cita. ¡Gracias!";
+            return View(new CreateCitaViewModel
+            {
+                Doctors = DoctorsService.GetAll().Result.ToList()
+            });
         }
 
         private int GetUserAge(DateTime birthdate)
@@ -123,9 +122,16 @@ namespace Cemeraf.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public IActionResult Update(Cita cita)
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            //int _id = Int32.Parse(id);
             Cita cita = CitasService.GetById(id).Result;
             Cita deletedCita = CitasService.Delete(cita).Result;
             if(deletedCita != null)

@@ -12,7 +12,7 @@ namespace Cemeraf.Services
         Task<Cita> GetById(int id);
         Task<Cita> ChangeStatus(string newStatus, Cita cita);
         Task<Cita> Delete(Cita cita);
-        Task<Cita> Add(Cita cita);
+        Task<Cita> Add(Cita cita, string userId);
         Task<Cita> Modify(Cita cita);
     }
 }
