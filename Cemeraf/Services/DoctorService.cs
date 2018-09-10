@@ -41,7 +41,21 @@ namespace Cemeraf.Services
         public Task<Doctor> GetById(int? id)
         {
             return Task.Run(() => {
-                return _context.Doctors.Where(d => d.DoctorId == id).FirstOrDefault();
+
+                try
+                {
+                    Doctor doc = _context.Doctors.Where(d => d.DoctorId == id).FirstOrDefault();
+                    if(doc != null)
+                    {
+                        return doc;
+                    }
+                }
+                catch(Exception exp)
+                {
+                    Console.WriteLine($"Error getting doctor: {exp}");
+                }
+                return null;
+                
             });
         }
     }

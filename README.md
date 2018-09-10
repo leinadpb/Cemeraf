@@ -17,9 +17,9 @@
 - [x] Crear página para despliegue de doctores.
 - [x] Crear página de ayuda. - LUNES
 - [x] Crear página de contacto personalizados de clientes. - LUNES
-- [ ] Crear ViewModel para para la página de Admin/Index con la información que requiere. - MARTES
+- [x] Crear ViewModel para para la página de Admin/Index con la información que requiere. - MARTES
 - [ ] Agregar página de servicios (Ver más en la página principal) - MARTES
-- [ ] Agregar página de detalles del Doctor. Se mostraran todas sus especialidas e información del mismo. - LUNES
+- [x] Agregar página de detalles del Doctor. Se mostraran todas sus especialidas e información del mismo. - LUNES
 - [x] Agregar confirmación antes de eliminar una cita. - LUNES
 - [ ] Agregar funcionalidad para modificar una cita. Sólo se podrá modificar la descripción, el doctor asignado y la fecha de la cita. - LUNES
 - [x] Restringir al usuario de que no puede agregar más de tres (3) citas en con estado "PENDIENTE". - LUNES

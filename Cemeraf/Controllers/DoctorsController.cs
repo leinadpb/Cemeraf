@@ -21,6 +21,33 @@ namespace Cemeraf.Controllers
             return View(doctors);
         }
 
+        public IActionResult Edit(int id)
+        {
+            Doctor doc = DoctorsService.GetById(id).Result;
+            if (doc != null)
+            {
+                return View(doc);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Details(int doctorId)
+        {
+            Doctor doc = DoctorsService.GetById(doctorId).Result;
+            if(doc == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(doc);
+            }
+        }
+
         public IActionResult Create()
         {
             return View();

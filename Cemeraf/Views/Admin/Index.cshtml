@@ -1,4 +1,4 @@
-﻿
+﻿@model AdminIndexViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -41,7 +41,7 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Citas creadas</p>
-                            0
+                            @Model.TotalCitasByCurrentUser
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Especialidades</p>
-                            0
+                            @Model.TotalSpecialties
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="col-xs-7">
                         <div class="numbers">
                             <p>Doctores</p>
-                            0
+                            @Model.TotalDoctorsAdded
                         </div>
                     </div>
                 </div>
@@ -117,29 +117,29 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="formGroupExampleInput">Nombre</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                            <input type="text" class="form-control" id="formGroupExampleInput" value="@Model.Name">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Fecha nacimiento</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            <input type="date" class="form-control" id="formGroupExampleInput2" value="@Model.Birthdate">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Foto de perfil</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" value="@Model.ProfilePicture">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="formGroupExampleInput">Apellido</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                            <input type="text" class="form-control" id="formGroupExampleInput" value="@Model.Lastname">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Sexo</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" value="@Model.Sexo">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">Nacionalidad</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                            <input type="text" class="form-control" id="formGroupExampleInput2" value="@Model.Nacionalidad">
                         </div>
                     </div>
                     <div class="col-md-2"></div>

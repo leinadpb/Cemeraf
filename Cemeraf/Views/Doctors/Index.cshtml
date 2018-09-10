@@ -17,7 +17,7 @@
                 <h5 class="card-title"><span style="font-weight:600;">@doctor.FullName</span></h5>
                 <p class="card-text">@doctor.Description</p>
                 <hr />
-                <a href="#" class="btn btn-primary btn-block">Ver detalles</a>
+                <a asp-controller="Doctors" asp-action="Details" asp-route-doctorId="@doctor.DoctorId" class="btn btn-primary btn-block">Ver detalles</a>
             </div>
         </div>
     }
