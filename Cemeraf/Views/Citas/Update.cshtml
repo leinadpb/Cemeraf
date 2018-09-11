@@ -1,59 +1,85 @@
-﻿@model Cemeraf.Models.Cita
+﻿@model Cemeraf.ViewModels.UpdateCitaViewModel
 
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Update</h2>
-
-<h4>Cita</h4>
+<h2>Agendar cita</h2>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Update">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CitaId" />
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span style="font-weight:600;">Fecha creada</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Descripción</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Fecha propuesta</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Doctor</span>
+                            </th>
+                            <th>
+                                <span style="font-weight:600;">Paciente</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Model.DateCreated
+                            </td>
+                            <td>
+                                @Model.Description
+                            </td>
+                            <td>
+                                @Model.DateProposed
+                            </td>
+                            <td>
+                                @Model.Doctor.FullName
+                            </td>
+                            <td>
+                                @Model.PacienteFullName
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateRequested" class="control-label"></label>
-                <input asp-for="DateRequested" class="form-control" />
-                <span asp-validation-for="DateRequested" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateAssigned" class="control-label"></label>
-                <input asp-for="DateAssigned" class="form-control" />
-                <span asp-validation-for="DateAssigned" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Approved" /> @Html.DisplayNameFor(model => model.Approved)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorId" class="control-label"></label>
-                <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.DoctorId"></select>
-                <span asp-validation-for="DoctorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
+    <div class="col-md-1"></div>
+</div>
+<br />
+<div class="row">
+    <div class="col-m-2"></div>
+    <div class="col-m-8">
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <input type="hidden" value="" name="" />
+                    <button type="submit" class="btn btn-primary btn-block" style="padding:2em;font-size:2rem;">DECLINAR</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form>
+                    <input type="hidden" value="" name="" />
+                    <button type="submit" class="btn btn-secondary btn-block" style="padding:2em;font-size:2rem;">AGENDAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-m-2"></div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Ir atrás</a>
 </div>
 

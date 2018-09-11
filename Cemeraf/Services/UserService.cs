@@ -26,5 +26,23 @@ namespace Cemeraf.Services
                 return _context.CemerafUsers.Where(u => u.Email.Equals(email)).FirstOrDefault();
             });
         }
+
+        public Task<CemerafUser> GetById(string id)
+        {
+            return Task.Run(() => {
+                CemerafUser user = null;
+                try
+                {
+                    user = _context.CemerafUsers.Where(u => u.Id.Equals(id)).First();
+                    if (user != null)
+                        return user;
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine($"Error: {exp}");
+                }
+                return user;
+            });
+        }
     }
 }

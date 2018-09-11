@@ -66,6 +66,12 @@ Salvaguardamos tus necesidades de salud y las de los tuyos">
                         </a>
                     </li>
                     <li class="">
+                        <a asp-controller="Citas" asp-action="AllCitas"> <!-- Restricted. Only for admins -->
+                            <i class="fas fa-angle-right"></i>
+                            <p>Todas las citas</p>
+                        </a>
+                    </li>
+                    <li class="">
                         <a asp-controller="Citas" asp-action="Create">
                             <i class="fas fa-angle-right"></i>
                             <p>Hacer cita</p>

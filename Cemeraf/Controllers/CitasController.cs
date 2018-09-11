@@ -56,6 +56,7 @@ namespace Cemeraf.Controllers
         public IActionResult Create(string Description, Int32? DoctorId, DateTime DateAssigned)
         {
             Cita cita = new Cita();
+            CemerafUser currentUser = UserManager.GetUserAsync(HttpContext.User).Result;
             if (Description != null && !Description.Equals("") && DateAssigned != null)
             {
                 cita.Description = Description;
@@ -63,7 +64,8 @@ namespace Cemeraf.Controllers
                 cita.Status = "PENDING";
                 cita.Approved = false;
                 cita.DateRequested = DateTime.Now;
-                cita.DateAssigned = DateAssigned;
+                cita.DateProposed = DateAssigned;
+                cita.CemerafUserId = currentUser.Id;
             }
             if (DoctorId != null)
             {
@@ -76,8 +78,6 @@ namespace Cemeraf.Controllers
                     }
                 }
             }
-            CemerafUser currentUser = UserManager.GetUserAsync(HttpContext.User).Result;
-            cita.CemerafUser = currentUser;
             var savedCita = CitasService.Add(cita, currentUser.Id).Result;
             if (savedCita != null)
             {
@@ -117,15 +117,52 @@ namespace Cemeraf.Controllers
             return Years;
         }
 
-        public IActionResult Update()
+        [HttpGet]
+        public IActionResult Update(int id)
         {
-            return View();
+            Cita cita = CitasService.GetById(id).Result;
+            UpdateCitaViewModel ViewModel = new UpdateCitaViewModel();
+
+            if (cita == null)
+                return RedirectToAction("Index");
+
+            CemerafUser currentUser = UserService.GetById(cita.CemerafUserId).Result;
+
+            Doctor doc = DoctorsService.GetById(cita.DoctorId).Result;
+            if (doc == null)
+                return RedirectToAction("Index");
+
+            if (currentUser == null)
+                return RedirectToAction("Index");
+
+            ViewModel.DateCreated = cita.DateRequested;
+            ViewModel.DateProposed = cita.DateProposed;
+            if (!doc.FullName.Equals(""))
+            {
+                ViewModel.DocName = doc.FullName;
+            }
+            else
+            {
+                ViewModel.DocName = doc.Firstname + " " + doc.Lastname;
+            }
+            ViewModel.PacienteFullName = currentUser.Firstname + " " + currentUser.Lastname;
+            ViewModel.Description = cita.Description;
+            ViewModel.Doctor = doc;
+
+            return View(ViewModel);
         }
 
         [HttpPost]
-        public IActionResult Update(Cita cita)
+        public IActionResult Update(UpdateCitaViewModel model)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -139,6 +176,13 @@ namespace Cemeraf.Controllers
                 ViewBag.Success = "Cita eliminada.";
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AllCitas()
+        {
+            IEnumerable<Cita> citas = CitasService.GetAll().Result;
+            return View(citas);
         }
     }
 }
