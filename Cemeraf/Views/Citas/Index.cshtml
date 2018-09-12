@@ -42,7 +42,14 @@
                             <td>@c.DateRequested</td>
                             <td>@c.Description</td>
                             <td>@c.Status</td>
-                            <td>@c.DoctorId</td>
+                            @if (c.Doctor != null)
+                            {
+                                <td>@c.Doctor.FullName</td>
+                            }
+                            else
+                            {
+                                <td>NINGUNO</td>
+                            }
                             <td>@c.DateProposed</td>
                             <td>
                                 <button onclick="PreDeleteCita(@c.CitaId)" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">

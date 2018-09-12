@@ -25,7 +25,7 @@ namespace Cemeraf.Models
         public bool Approved { get; set; }
 
         // Optional: In this case, the secretary will have to assign a doctor before it's approval.
-        public int DoctorId { get; set; }
+        public int? DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
         public string CemerafUserId { get; set; }

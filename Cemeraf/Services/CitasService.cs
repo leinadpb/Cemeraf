@@ -79,7 +79,10 @@ namespace Cemeraf.Services
         public Task<IEnumerable<Cita>> GetAll()
         {
             return Task.Run(() => {
-                return _context.Citas.AsEnumerable();
+                return _context.Citas
+                    .Include(c => c.Doctor)
+                    .Include(c => c.CemerafUser)
+                    .AsEnumerable();
             });
         }
 
@@ -87,7 +90,10 @@ namespace Cemeraf.Services
         {
             return Task.Run(() => {
                 //CemerafUser user = _context.CemerafUsers.Where(cu => cu.Email.Equals(id)).FirstOrDefault();
-                return _context.Citas.Where(c => c.CemerafUserId.Equals(id)).AsEnumerable();
+                return _context.Citas.Where(c => c.CemerafUserId.Equals(id))
+                    .Include(c => c.CemerafUser)
+                    .Include(c => c.Doctor)
+                    .AsEnumerable();
             });
         }
 

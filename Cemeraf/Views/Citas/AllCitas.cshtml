@@ -5,7 +5,69 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <div>
-    <h2><span style="margin-left:1em;">Ver mis citas</span></h2>
+    <h2><span style="margin-left:1em;">Todas las citas</span></h2>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card" style="padding:1em;">
+            <span style="font-weight:600;">Filtros avanzados</span>
+            
+            <form method="get" asp-controller="Citas" asp-action="SearchAll">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Fecha creada</label>
+                            <input class="form-control" type="date" name="createdDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Fecha asignada</label>
+                            <input class="form-control" type="date" name="assignedDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Doctor(a)</label>
+                            <select name="doctorSelected" class="form-control">
+                                <option value="0">Seleccione</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select name="status" class="form-control">
+                                <option value="0">Seleccione</option>
+                                <option value="1">Pendiente</option>
+                                <option value="2">Declinada</option>
+                                <option value="3">Agendada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Texto en descripción</label>
+                            <input class="form-control" type="text" name="textInDescription" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label></label>
+                            <button type="submit" class="btn btn-sm btn-primary btn-block" style="font-size:1.9rem;">Buscar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
 </div>
 <br />
 <div class="container-fluid">
@@ -38,21 +100,30 @@
                     <tbody>
                         @foreach (var c in Model)
                         {
-                            <tr>
-                                <td>@c.DateRequested</td>
-                                <td>@c.Description</td>
-                                <td>@c.Status</td>
-                                <td>@c.DoctorId</td>
-                                <td>@c.DateProposed</td>
-                                <td>
-                                    <a asp-controller="Citas" asp-action="Update" asp-route-id="@c.CitaId" class="btn btn-primary btn-sm">Modificar</a>
-                                    <button onclick="PreDeleteCita(@c.CitaId)" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                        Eliminar
-                                    </button>
+                        <tr>
+                            <td>@c.DateRequested</td>
+                            <td>@c.Description</td>
+                            <td>@c.Status</td>
+                            @if (c.Doctor != null)
+                            {
+                                <td>@c.Doctor.FullName</td>
 
-                                </td>
+                            }
+                            else
+                            {
+                                <td>NINGUNO</td>
 
-                            </tr>
+                            }
+                            <td>@c.DateProposed</td>
+                            <td>
+                                <a asp-controller="Citas" asp-action="Update" asp-route-id="@c.CitaId" class="btn btn-primary btn-sm">Modificar</a>
+                                <button onclick="PreDeleteCita(@c.CitaId)" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                    Eliminar
+                                </button>
+
+                            </td>
+
+                        </tr>
                         }
                     </tbody>
                 </table>

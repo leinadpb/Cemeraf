@@ -44,6 +44,7 @@ namespace Cemeraf
                     Configuration.GetConnectionString("CemerafConnection")));
             services.AddIdentity<CemerafUser, IdentityRole>()
                 .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.ConfigureApplicationCookie(options => {
