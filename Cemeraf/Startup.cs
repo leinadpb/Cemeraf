@@ -42,7 +42,7 @@ namespace Cemeraf
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("CemerafConnection")));
-            services.AddDefaultIdentity<CemerafUser>()
+            services.AddIdentity<CemerafUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<UserService>();

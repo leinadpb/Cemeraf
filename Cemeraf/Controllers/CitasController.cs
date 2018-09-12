@@ -35,7 +35,7 @@ namespace Cemeraf.Controllers
 
         public IActionResult Index()
         {
-            string username = UserManager.GetUserAsync(HttpContext.User).Result.Email;
+            string username = UserManager.GetUserAsync(HttpContext.User).Result.Id;
             IEnumerable<Cita> citas = CitasService.GetAllByUser(username).Result;
             return View(citas);
         }

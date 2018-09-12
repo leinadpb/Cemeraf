@@ -1,0 +1,110 @@
+﻿@model AllUsersViewModel
+@{
+    ViewData["Title"] = "AllUsers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div>
+        <h2 style="font-weight:600;font-size:1.5rem;">Todos los usuarios registrados</h2>
+    </div>
+</div>
+<br />
+<h4>Usuarios generales</h4>
+<div class="card" style="padding:1em;">
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Sexo
+                    </th>
+                    <th>
+                        Edad
+                    </th>
+                    <th>
+                        Total citas creadas
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Nombre</td>
+                        <td>@user.Apellido</td>
+                        <td>@user.Email</td>
+                        <td>@user.Sexo</td>
+                        <td>@user.Edad</td>
+                        <td>@user.TotalCitas</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Admin" asp-action="MakeUserAdmin" asp-route-userId="@user.Id">Hacer administrador</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<h4>Administradores</h4>
+<div class="card" style="padding:1em;">
+    <br />
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Apellido
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Sexo
+                    </th>
+                    <th>
+                        Edad
+                    </th>
+                    <th>
+                        Total citas creadas
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Administrators)
+                {
+                    <tr>
+                        <td>@user.Nombre</td>
+                        <td>@user.Apellido</td>
+                        <td>@user.Email</td>
+                        <td>@user.Sexo</td>
+                        <td>@user.Edad</td>
+                        <td>@user.TotalCitas</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Admin" asp-action="RemoveUserAdmin" asp-route-userId="@user.Id">Quitar administrador</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

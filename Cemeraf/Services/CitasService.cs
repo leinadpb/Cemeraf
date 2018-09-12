@@ -86,8 +86,8 @@ namespace Cemeraf.Services
         public Task<IEnumerable<Cita>> GetAllByUser(string id)
         {
             return Task.Run(() => {
-                CemerafUser user = _context.CemerafUsers.Where(cu => cu.Email.Equals(id)).FirstOrDefault();
-                return _context.Citas.Where(c => c.CemerafUser == user).AsEnumerable();
+                //CemerafUser user = _context.CemerafUsers.Where(cu => cu.Email.Equals(id)).FirstOrDefault();
+                return _context.Citas.Where(c => c.CemerafUserId.Equals(id)).AsEnumerable();
             });
         }
 

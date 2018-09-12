@@ -11,5 +11,7 @@ namespace Cemeraf.Services
         Task<IEnumerable<CemerafUser>> GetAll();
         Task<CemerafUser> GetByEmail(string email);
         Task<CemerafUser> GetById(string id);
+        Task<bool> AddToRolAsync(CemerafUser user, string role);
+        Task<bool> RemoveFromRolAsync(CemerafUser user, string role);
     }
 }

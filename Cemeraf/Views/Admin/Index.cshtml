@@ -3,6 +3,12 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@if (ViewBag.Msg != null)
+{
+    <div class="alert alert-info alert-with-icon">
+        @ViewBag.Msg
+    </div>
+}
 <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="card">
@@ -24,6 +30,31 @@
                     <hr />
                     <div class="stats">
                         Visitas a la página principal
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="far fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Total usuarios registrados</p>
+                            @Model.TotalUsers
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <hr />
+                    <div class="stats">
+                        <a asp-controller="Admin" asp-action="AllUsers">Ver todos</a>
                     </div>
                 </div>
             </div>
