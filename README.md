@@ -25,8 +25,8 @@
 - [ ] Agregar filtros avanzados en la página de despliegue de doctores. - VIERNES
 
 ##### Administrador
-- [ ] Agregar funcionalidades del administrador en el menú del panel administrativo. - JUEVES
-- [ ] Cambiar título del "Mi clinica" o "Panel administrativo" según el rol del usuario. Si se selecciona otra diferente a la del usuario, se debe enviar una notifiación al mismo sobre este cambio. - VIERNES
+- [x] Agregar funcionalidades del administrador en el menú del panel administrativo. - JUEVES
+- [x] Cambiar título del "Mi clinica" o "Panel administrativo" según el rol del usuario. Si se selecciona otra diferente a la del usuario, se debe enviar una notifiación al mismo sobre este cambio. - VIERNES
 - [ ] Agregar funcionalidad para declinar una cita. En este caso se debe pedir una nota al administrador y se debe notificar al usuario con esta nota. - MIERCOLES
 - [ ] Agregar opción para subir fotos de los doctores al momento de crear uno nuevo. - JUEVES
 - [ ] Agregar página para modificar un doctor. - MIERCOLES

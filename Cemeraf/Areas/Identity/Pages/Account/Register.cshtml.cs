@@ -25,7 +25,8 @@ namespace Cemeraf.Areas.Identity.Pages.Account
             UserManager<CemerafUser> userManager,
             SignInManager<CemerafUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;

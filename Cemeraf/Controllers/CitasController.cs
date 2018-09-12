@@ -118,6 +118,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpGet]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult Update(int id)
         {
             Cita cita = CitasService.GetById(id).Result;
@@ -153,6 +154,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpPost]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult Update(UpdateCitaViewModel model)
         {
 
@@ -179,6 +181,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpGet]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult AllCitas()
         {
             IEnumerable<Cita> citas = CitasService.GetAll().Result;

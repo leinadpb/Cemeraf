@@ -62,6 +62,7 @@ namespace Cemeraf.Controllers
             });
         }
 
+        [Authorize("ADMINISTRATORS")]
         public IActionResult AllUsers()
         {
             var users = UsersService.GetAll().Result;
@@ -149,6 +150,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpGet]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult MakeUserAdmin(string userId)
         {
             CemerafUser user = UsersService.GetById(userId).Result;
@@ -173,6 +175,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpGet]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult RemoveUserAdmin(string userId)
         {
             CemerafUser user = UsersService.GetById(userId).Result;

@@ -43,7 +43,25 @@ namespace Cemeraf
                 options.UseSqlServer(
                     Configuration.GetConnectionString("CemerafConnection")));
             services.AddIdentity<CemerafUser, IdentityRole>()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureApplicationCookie(options => {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            services.AddAuthorization(options =>
+            {
+
+                options.AddPolicy("ADMINISTRATORS",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireRole("ADMINISTRATORS");
+                    });
+
+            });
 
             services.AddScoped<UserService>();
             services.AddScoped<CitasService>();

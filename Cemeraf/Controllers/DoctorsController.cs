@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cemeraf.Models;
 using Cemeraf.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cemeraf.Controllers
 {
@@ -21,6 +22,7 @@ namespace Cemeraf.Controllers
             return View(doctors);
         }
 
+        [Authorize("ADMINISTRATORS")]
         public IActionResult Edit(int id)
         {
             Doctor doc = DoctorsService.GetById(id).Result;
@@ -48,12 +50,14 @@ namespace Cemeraf.Controllers
             }
         }
 
+        [Authorize("ADMINISTRATORS")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize("ADMINISTRATORS")]
         public IActionResult Create(Doctor doctor)
         {
             if (ModelState.IsValid)
