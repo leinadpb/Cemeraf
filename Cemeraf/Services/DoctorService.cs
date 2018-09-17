@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cemeraf.Models;
 using Cemeraf.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cemeraf.Services
 {
@@ -16,25 +17,39 @@ namespace Cemeraf.Services
             _context = ctx;
         }
 
-        public Doctor Create(Doctor doctor)
+        public Task<Doctor> Create(Doctor doctor)
         {
-            try
-            {
-                _context.Doctors.Add(doctor);
-                _context.SaveChanges();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine($"Error saving doctor: {exp}");
+            return Task.Run(() => {
+                if (doctor != null)
+                {
+                    try
+                    {
+                        _context.Doctors.Add(doctor);
+                        _context.SaveChanges();
+
+                        return doctor;
+                    }
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine($"Error saving doctor: {exp}");
+                    }
+                }
+
                 return null;
-            }
-            return doctor;
+            });
+        }
+
+        public Task<Doctor> Delete(Doctor doctor)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Doctor>> GetAll()
         {
             return Task.Run(() => {
-                return _context.Doctors.AsEnumerable();
+                return _context.Doctors
+                    .Include(d => d.Specialties)
+                    .AsEnumerable();
             });
         }
 
@@ -42,21 +57,29 @@ namespace Cemeraf.Services
         {
             return Task.Run(() => {
 
-                try
+                if(id != null)
                 {
-                    Doctor doc = _context.Doctors.Where(d => d.DoctorId == id).FirstOrDefault();
-                    if(doc != null)
+                    try
                     {
-                        return doc;
+                        Doctor doc = _context.Doctors.Where(d => d.DoctorId == id).FirstOrDefault();
+                        if (doc != null)
+                        {
+                            return doc;
+                        }
                     }
-                }
-                catch(Exception exp)
-                {
-                    Console.WriteLine($"Error getting doctor: {exp}");
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine($"Error getting doctor: {exp}");
+                    }
                 }
                 return null;
                 
             });
+        }
+
+        public Task<Doctor> Modify(Doctor newDoctor, int doctorId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

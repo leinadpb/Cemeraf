@@ -47,54 +47,62 @@ namespace Cemeraf.Controllers
             int totalDoctors = DoctorsService.GetAll().Result.Count();
             int totalCitas = CitasService.GetAllByUser(userId).Result.Count();
             int totalSpecialties = SpecialtiesService.GetAll().Result.Count();
-            int totalUsers = UsersService.GetAll().Result.Count();
-            return View(new AdminIndexViewModel {
-                TotalDoctorsAdded = totalDoctors,
-                TotalCitasByCurrentUser = totalCitas,
-                TotalSpecialties = totalSpecialties,
-                Name = currentUser.Firstname,
-                Lastname = currentUser.Lastname,
-                Birthdate = currentUser.Birthdate,
-                Sexo = currentUser.Sex,
-                ProfilePicture = "",
-                Nacionalidad = "",
-                TotalUsers = totalUsers
-            });
+
+            if (!IsAdmin(currentUser))
+            {
+                return View(new AdminIndexViewModel
+                {
+                    TotalDoctorsAdded = totalDoctors,
+                    TotalCitasByCurrentUser = totalCitas,
+                    TotalSpecialties = totalSpecialties,
+                    Name = currentUser.Firstname,
+                    Lastname = currentUser.Lastname,
+                    Birthdate = currentUser.Birthdate,
+                    Sexo = currentUser.Sex,
+                    ProfilePicture = "",
+                    Nacionalidad = "",
+                  //  TotalUsers = totalUsers,
+                    IsAdmin = false
+                });
+            }
+            else
+            {
+                int totalUsers = UsersService.GetAll().Result.Count();
+                int totalCitasCreated = CitasService.GetAll().Result.Count();
+
+                return View(new AdminAdminIndexViewModel
+                {
+                    TotalDoctorsAdded = totalDoctors,
+                    //TotalCitasByCurrentUser = totalCitas,
+                    TotalSpecialties = totalSpecialties,
+                    Name = currentUser.Firstname,
+                    Lastname = currentUser.Lastname,
+                    Birthdate = currentUser.Birthdate,
+                    Sexo = currentUser.Sex,
+                    ProfilePicture = "",
+                    Nacionalidad = "",
+                    TotalUsers = totalUsers,
+                    TotalWebsiteViews = 0,
+                    TotalCitasCreated = totalCitasCreated,
+                    IsAdmin = true
+                });
+            }
+
         }
 
         [Authorize("ADMINISTRATORS")]
-        public IActionResult AllUsers()
+        public async Task<IActionResult> AllUsers(int? pageIndex)
         {
             var users = UsersService.GetAll().Result;
-            AllUsersViewModel model = new AllUsersViewModel();
-            List<Usuario> Usuarios = new List<Usuario>();
-            List<Usuario> Administradores = new List<Usuario>();
 
-            foreach (CemerafUser u in users)
-            {
-                var user = new Usuario {
-                    Nombre = u.Firstname,
-                    Apellido = u.Lastname,
-                    Email = u.Email,
-                    Edad = GetUserAge(u.Birthdate),
-                    Id = u.Id,
-                    Sexo = u.Sex,
-                    TotalCitas = CitasService.GetAllByUser(u.Id).Result.Count()
-                };
+            int pageSize = 5;
 
-                if (IsAdmin(u))
-                {
-                    Administradores.Add(user);
-                }
-                else
-                {
-                    Usuarios.Add(user);
-                }
-            }
-            model.Administrators = Administradores;
-            model.Users = Usuarios;
+            var UsuariosPaged = await PaginatedList<CemerafUser>.CreateAsync(
+                        users, pageIndex ?? 1, pageSize);
 
-            return View(model);
+            return View(new AllUsersViewModel {
+                Users = UsuariosPaged,
+            });
         }
 
         private bool IsAdmin(CemerafUser u)

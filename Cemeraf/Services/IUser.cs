@@ -8,7 +8,7 @@ namespace Cemeraf.Services
 {
     public interface IUser
     {
-        Task<IEnumerable<CemerafUser>> GetAll();
+        Task<IQueryable<CemerafUser>> GetAll();
         Task<CemerafUser> GetByEmail(string email);
         Task<CemerafUser> GetById(string id);
         Task<bool> AddToRolAsync(CemerafUser user, string role);

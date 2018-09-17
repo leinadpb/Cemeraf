@@ -14,11 +14,27 @@ namespace Cemeraf.Services
         {
             _context = ctx;
         }
+
+        public Task<Specialty> Add(Specialty specialty)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Specialty> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Specialty>> GetAll()
         {
             return Task.Run(() => {
                 return _context.Specialties.AsEnumerable();
             });
+        }
+
+        public Task<Specialty> Modify(Specialty newSpecialty, int specialtyId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

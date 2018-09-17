@@ -41,15 +41,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var user in Model.Users)
+                @foreach (var user in Model.Users)
                 {
                     <tr>
-                        <td>@user.Nombre</td>
-                        <td>@user.Apellido</td>
+                        <td>@user.Firstname</td>
+                        <td>@user.Lastname</td>
                         <td>@user.Email</td>
-                        <td>@user.Sexo</td>
-                        <td>@user.Edad</td>
-                        <td>@user.TotalCitas</td>
+                        <td>@user.Sex</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a class="btn btn-sm btn-outline-secondary" asp-controller="Admin" asp-action="MakeUserAdmin" asp-route-userId="@user.Id">Hacer administrador</a>
                         </td>
@@ -57,54 +57,24 @@
                 }
             </tbody>
         </table>
-    </div>
-</div>
-<h4>Administradores</h4>
-<div class="card" style="padding:1em;">
-    <br />
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        Nombre
-                    </th>
-                    <th>
-                        Apellido
-                    </th>
-                    <th>
-                        Email
-                    </th>
-                    <th>
-                        Sexo
-                    </th>
-                    <th>
-                        Edad
-                    </th>
-                    <th>
-                        Total citas creadas
-                    </th>
-                    <th>
-                        Acciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model.Administrators)
-                {
-                    <tr>
-                        <td>@user.Nombre</td>
-                        <td>@user.Apellido</td>
-                        <td>@user.Email</td>
-                        <td>@user.Sexo</td>
-                        <td>@user.Edad</td>
-                        <td>@user.TotalCitas</td>
-                        <td>
-                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Admin" asp-action="RemoveUserAdmin" asp-route-userId="@user.Id">Quitar administrador</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        @{
+            var prevDisabled = !Model.Users.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.Users.HasNextPage ? "disabled" : "";
+        }
+
+        <a asp-action="AllUsers"
+          
+           asp-route-pageIndex="@(Model.Users.PageIndex - 1)"
+    
+           class="btn btn-default @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="AllUsers"
+         
+           asp-route-pageIndex="@(Model.Users.PageIndex + 1)"
+      
+           class="btn btn-default @nextDisabled">
+            Next
+        </a>
     </div>
 </div>

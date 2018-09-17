@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cemeraf.Models;
 
 namespace Cemeraf.ViewModels
 {
@@ -17,7 +18,6 @@ namespace Cemeraf.ViewModels
     }
     public class AllUsersViewModel
     {
-        public List<Usuario> Administrators { get; set; }
-        public List<Usuario> Users { get; set; }
+        public PaginatedList<CemerafUser> Users { get; set; }
     }
 }

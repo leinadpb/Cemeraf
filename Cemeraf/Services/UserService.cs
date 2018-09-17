@@ -71,10 +71,10 @@ namespace Cemeraf.Services
             
         }
 
-        public Task<IEnumerable<CemerafUser>> GetAll()
+        public Task<IQueryable<CemerafUser>> GetAll()
         {
             return Task.Run(() => {
-                return _context.CemerafUsers.AsEnumerable();
+                return _context.CemerafUsers.Select(a => a);
             });
         }
 

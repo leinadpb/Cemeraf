@@ -9,133 +9,139 @@
         @ViewBag.Msg
     </div>
 }
-<div class="row">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="far fa-eye"></i>
+    <div class="row">
+        @if (Model.IsAdmin)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="far fa-eye"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Total visitas</p>
+                                    0
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Total visitas</p>
-                            0
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                Visitas a la página principal
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="footer">
-                    <hr />
-                    <div class="stats">
-                        Visitas a la página principal
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="far fa-eye"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Usuarios registrados</p>
+                                    @Model.TotalUsers
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <a asp-controller="Admin" asp-action="AllUsers">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (!Model.IsAdmin)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="far fa-calendar-check"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Citas creadas</p>
+                                    @Model.TotalCitasByCurrentUser
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="far fa-eye"></i> <a href="#">Ver todas</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="far fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Especialidades</p>
+                                @Model.TotalSpecialties
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="far fa-eye"></i> <a asp-controller="Specialties" asp-action="Index">Ver todas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="far fa-eye"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Doctores</p>
+                                @Model.TotalDoctorsAdded
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="far fa-eye"></i> <a asp-controller="Doctors" asp-action="Index">Ver todos</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="far fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Usuarios registrados</p>
-                            @Model.TotalUsers
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <hr />
-                    <div class="stats">
-                        <a asp-controller="Admin" asp-action="AllUsers">Ver todos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="far fa-calendar-check"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Citas creadas</p>
-                            @Model.TotalCitasByCurrentUser
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <hr />
-                    <div class="stats">
-                        <i class="far fa-eye"></i> <a href="#">Ver todas</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="far fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Especialidades</p>
-                            @Model.TotalSpecialties
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <hr />
-                    <div class="stats">
-                        <i class="far fa-eye"></i> <a asp-controller="Specialties" asp-action="Index">Ver todas</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-sm-6">
-        <div class="card">
-            <div class="content">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="far fa-eye"></i>
-                        </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Doctores</p>
-                            @Model.TotalDoctorsAdded
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <hr />
-                    <div class="stats">
-                        <i class="far fa-eye"></i> <a asp-controller="Doctors" asp-action="Index">Ver todos</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div align="center">
     <div class="card">
         <div style="padding-top:1.5em;">

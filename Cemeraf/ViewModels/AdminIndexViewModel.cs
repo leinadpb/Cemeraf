@@ -22,6 +22,9 @@ namespace Cemeraf.ViewModels
         public string ProfilePicture { get; set; }
         public string Nacionalidad { get; set; }
 
+        //
+        public bool IsAdmin { get; set; }
+
 
     }
 }

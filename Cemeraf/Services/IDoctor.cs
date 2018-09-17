@@ -10,7 +10,8 @@ namespace Cemeraf.Services
     {
         Task<IEnumerable<Doctor>> GetAll();
         Task<Doctor> GetById(int? id);
-        Doctor Create(Doctor doctor);
-        
+        Task<Doctor> Create(Doctor doctor);
+        Task<Doctor> Delete(Doctor doctor);
+        Task<Doctor> Modify(Doctor newDoctor, int doctorId);
     }
 }
