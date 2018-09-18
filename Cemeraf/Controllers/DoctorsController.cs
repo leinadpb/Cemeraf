@@ -7,6 +7,8 @@ using Cemeraf.Models;
 using Cemeraf.Services;
 using Microsoft.AspNetCore.Authorization;
 using Cemeraf.ViewModels;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Cemeraf.Controllers
 {
@@ -14,11 +16,14 @@ namespace Cemeraf.Controllers
     {
         private readonly DoctorService DoctorsService;
         private readonly SpecialtiesService SpecialtiesService;
+        private readonly PicturesService PicturesService;
 
-        public DoctorsController(DoctorService doctorService, SpecialtiesService specialtiesService)
+        public DoctorsController(DoctorService doctorService, SpecialtiesService specialtiesService,
+            PicturesService picturesService)
         {
             DoctorsService = doctorService;
             SpecialtiesService = specialtiesService;
+            PicturesService = picturesService;
         }
 
         [HttpGet]
@@ -85,8 +90,23 @@ namespace Cemeraf.Controllers
 
         [HttpPost]
         [Authorize("ADMINISTRATORS")]
-        public async Task<IActionResult> Create(Doctor doctor)
+        public async Task<IActionResult> Create(Doctor doctor, IFormFile ProfilePicture)
         {
+            //Save the file in temporal files
+            var filePath = Path.GetTempFileName();
+            var stream = new FileStream(filePath, FileMode.Create);
+            await ProfilePicture.CopyToAsync(stream);
+            stream.Close();
+
+            //Upload temproal file to S3 Bucket
+            var result = PicturesService.UploadPictureToS3(filePath, Path.GetExtension(ProfilePicture.FileName)).Result;
+
+            //Complete the model
+            if (!String.IsNullOrEmpty(result))
+            {
+                doctor.ProfilePicture = result;
+            }
+
             if (ModelState.IsValid)
             {
                 var savedDoctor = await DoctorsService.Create(doctor);
@@ -101,6 +121,7 @@ namespace Cemeraf.Controllers
                     ViewBag.Error = "El doctor no se ha podido crear, inténtelo de nuevo. Si el problema persiste contacte a su administrador web.";
                 }
             }
+            ViewBag.Error = "El modelo no es válido.";
             return View();
         }
     }

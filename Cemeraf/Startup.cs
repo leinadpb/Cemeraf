@@ -69,6 +69,7 @@ namespace Cemeraf
             services.AddScoped<CitasService>();
             services.AddScoped<DoctorService>();
             services.AddScoped<SpecialtiesService>();
+            services.AddScoped<PicturesService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
