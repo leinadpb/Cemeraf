@@ -70,6 +70,9 @@ namespace Cemeraf
             services.AddScoped<DoctorService>();
             services.AddScoped<SpecialtiesService>();
             services.AddScoped<PicturesService>();
+            services.AddScoped<EmailService>();
+
+            services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -95,6 +98,11 @@ namespace Cemeraf
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            app.UseCors(builder =>
+                builder.WithOrigins(Configuration.GetSection("Cemeraf:WebsiteUrl").Value)
+                       .AllowAnyHeader()
+            );
 
             app.UseMvc(routes =>
             {

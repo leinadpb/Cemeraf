@@ -69,6 +69,7 @@ namespace Cemeraf.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Details(int doctorId)
         {
             Doctor doc = DoctorsService.GetById(doctorId).Result;
