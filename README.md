@@ -6,7 +6,7 @@
 
 ##### Usuario Cemeraf
 - [ ] Modelo de servicios. Despliegue de servicios en página principal. Cambiar íconos de servicios.
-- [ ] Envío de emails por la página principal.
+- [x] Envío de emails por la página principal.
 - [x] Slider de doctores en la página principal.
 - [ ] Cambiar número y dirección en el footer de la página principal.
 - [x] Arreglar página de "Olvidaste la contraseña?"
@@ -28,7 +28,7 @@
 - [x] Agregar funcionalidades del administrador en el menú del panel administrativo. 
 - [x] Cambiar título del "Mi clinica" o "Panel administrativo" según el rol del usuario. Si se selecciona otra diferente a la del usuario, se debe enviar una notifiación al mismo sobre este cambio.
 - [ ] Agregar funcionalidad para declinar una cita. En este caso se debe pedir una nota al administrador y se debe notificar al usuario con esta nota.
-- [ ] Agregar opción para subir fotos de los doctores al momento de crear uno nuevo. 
+- [x] Agregar opción para subir fotos de los doctores al momento de crear uno nuevo. 
 - [ ] Agregar página para modificar un doctor. 
 - [ ] Agregar funcionalidad para eliminar un doctor (con confirmación). 
 - [x] Agregar funcionalidad para modificar una cita (Declinar o agendar). 
