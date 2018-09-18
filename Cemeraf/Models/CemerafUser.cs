@@ -14,6 +14,7 @@ namespace Cemeraf.Models
         public DateTime Birthdate { get; set; }
         public string Sex { get; set; }
         public string ProfilePicture { get; set; }
+        public bool IsAdmin { get; set; }
 
         public List<Cita> Citas { get; set; }
 

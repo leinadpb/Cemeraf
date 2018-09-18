@@ -93,9 +93,9 @@ namespace Cemeraf.Controllers
         [Authorize("ADMINISTRATORS")]
         public async Task<IActionResult> AllUsers(int? pageIndex)
         {
-            var users = UsersService.GetAll().Result;
+            var users = UsersService.GetGeneralUsers().Result;
 
-            int pageSize = 5;
+            int pageSize = 7;
 
             var UsuariosPaged = await PaginatedList<CemerafUser>.CreateAsync(
                         users, pageIndex ?? 1, pageSize);
@@ -167,6 +167,7 @@ namespace Cemeraf.Controllers
                 TempData["MSG"] = "Usuario no encontrado.";
                 return RedirectToAction("Index");
             }
+            
             bool result = UsersService.AddToRolAsync(user, ADMINISTRATORS_ROLE).Result;
 
             if (result)

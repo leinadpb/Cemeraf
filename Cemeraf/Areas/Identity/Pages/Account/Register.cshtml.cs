@@ -91,6 +91,7 @@ namespace Cemeraf.Areas.Identity.Pages.Account
                     Birthdate = Input.Birthdate,
                     Sex = Input.Sex,
                     ProfilePicture = Input.ProfilePicture,
+                    IsAdmin = false
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

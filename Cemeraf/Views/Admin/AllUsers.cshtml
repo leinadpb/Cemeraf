@@ -30,10 +30,7 @@
                         Sexo
                     </th>
                     <th>
-                        Edad
-                    </th>
-                    <th>
-                        Total citas creadas
+                        Nacimiento
                     </th>
                     <th>
                         Acciones
@@ -48,7 +45,7 @@
                         <td>@user.Lastname</td>
                         <td>@user.Email</td>
                         <td>@user.Sex</td>
-                        <td></td>
+                        <td>@user.Birthdate</td>
                         <td></td>
                         <td>
                             <a class="btn btn-sm btn-outline-secondary" asp-controller="Admin" asp-action="MakeUserAdmin" asp-route-userId="@user.Id">Hacer administrador</a>
@@ -61,6 +58,7 @@
             var prevDisabled = !Model.Users.HasPreviousPage ? "disabled" : "";
             var nextDisabled = !Model.Users.HasNextPage ? "disabled" : "";
         }
+        
 
         <a asp-action="AllUsers"
           

@@ -13,5 +13,6 @@ namespace Cemeraf.Services
         Task<CemerafUser> GetById(string id);
         Task<bool> AddToRolAsync(CemerafUser user, string role);
         Task<bool> RemoveFromRolAsync(CemerafUser user, string role);
+        Task<IQueryable<CemerafUser>> GetGeneralUsers();
     }
 }

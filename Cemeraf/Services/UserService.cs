@@ -54,6 +54,7 @@ namespace Cemeraf.Services
                     try
                     {
                         var result = await UserManager.AddToRoleAsync(user, role);
+                        user.IsAdmin = true;
                         _context.SaveChanges();
                         return true;
                     }catch(Exception exp)
@@ -100,6 +101,14 @@ namespace Cemeraf.Services
                     Console.WriteLine($"Error: {exp}");
                 }
                 return user;
+            });
+        }
+
+        public Task<IQueryable<CemerafUser>> GetGeneralUsers()
+        {
+            return Task.Run(() => {
+                var query = _context.CemerafUsers.Where(c => c.IsAdmin == true);
+                return query;
             });
         }
 
