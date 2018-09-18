@@ -14,5 +14,6 @@ namespace Cemeraf.ViewModels
         public string Description { get; set; }
         public Doctor Doctor { get; set; }
         public string DocName { get; set; }
+        public int ID { get; set; }
     }
 }

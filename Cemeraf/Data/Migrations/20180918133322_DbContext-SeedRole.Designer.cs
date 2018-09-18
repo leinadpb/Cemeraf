@@ -4,14 +4,16 @@ using Cemeraf.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cemeraf.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180918133322_DbContext-SeedRole")]
+    partial class DbContextSeedRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,8 +69,6 @@ namespace Cemeraf.Data.Migrations
 
                     b.Property<string>("Lastname");
 
-                    b.Property<string>("ProfilePicture");
-
                     b.HasKey("DoctorId");
 
                     b.ToTable("Doctors");
@@ -117,7 +117,7 @@ namespace Cemeraf.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "47b6852b-33f6-4eea-acca-b9a716f288da", ConcurrencyStamp = "3d94d877-d7ed-4298-a6fb-3bf0fac4ab96", Name = "ADMINISTRATORS", NormalizedName = "ADMINISTRATORS" }
+                        new { Id = "0dd9ba29-8b99-4e15-b391-5cf541a743b2", ConcurrencyStamp = "053d951f-b3b6-4259-a947-93afdf44a37b", Name = "ADMINISTRATORS", NormalizedName = "ADMINISTRATORS" }
                     );
                 });
 

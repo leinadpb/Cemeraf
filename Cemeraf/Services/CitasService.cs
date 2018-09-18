@@ -106,7 +106,21 @@ namespace Cemeraf.Services
 
         public Task<Cita> Modify(Cita cita)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => {
+
+                try
+                {
+                    _context.Citas.Update(cita);
+                    _context.SaveChanges();
+                    return cita;
+                }
+                catch(Exception exp)
+                {
+                    Console.WriteLine($"Error: {exp}");
+                }
+
+                return null;
+            });
         }
     }
 }

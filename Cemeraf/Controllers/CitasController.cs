@@ -149,8 +149,37 @@ namespace Cemeraf.Controllers
             ViewModel.PacienteFullName = currentUser.Firstname + " " + currentUser.Lastname;
             ViewModel.Description = cita.Description;
             ViewModel.Doctor = doc;
+            ViewModel.ID = cita.CitaId;
 
             return View(ViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Approve(int id)
+        {
+            Cita cita = CitasService.GetById(id).Result;
+            if (cita == null)
+                return RedirectToAction("Index");
+
+            cita.Status = "APROBADA";
+            Cita result = await CitasService.Modify(cita);
+            if (result != null)
+                TempData["Success"] = "Cita modificada exitosamente.";
+            return RedirectToAction("AllCitas");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Deny(int id)
+        {
+            Cita cita = CitasService.GetById(id).Result;
+            if (cita == null)
+                return RedirectToAction("Index");
+
+            cita.Status = "DENEGADA";
+            Cita result = await CitasService.Modify(cita);
+            if (result != null)
+                TempData["Success"] = "Cita modificada exitosamente.";
+            return RedirectToAction("AllCitas");
         }
 
         [HttpPost]

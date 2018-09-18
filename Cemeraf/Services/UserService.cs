@@ -107,7 +107,7 @@ namespace Cemeraf.Services
         public Task<IQueryable<CemerafUser>> GetGeneralUsers()
         {
             return Task.Run(() => {
-                var query = _context.CemerafUsers.Where(c => c.IsAdmin == true);
+                var query = _context.CemerafUsers.Where(c => c.IsAdmin != true);
                 return query;
             });
         }

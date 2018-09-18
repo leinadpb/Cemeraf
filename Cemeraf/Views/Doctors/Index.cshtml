@@ -1,24 +1,64 @@
-﻿@model IEnumerable<Doctor>
+﻿@inject SignInManager<CemerafUser> SignInManager
+@model IEnumerable<Doctor>
 @{
     ViewData["Title"] = "Ver doctores";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-
-<div>
-    <h2><span style="margin-left:1em;">Ver doctores<span style="font-size:2rem;font-weight:100;"> <a asp-controller="Doctors" asp-action="Create">Agregar</a></span></span></h2>
-</div>
 <br />
-<div style="display:flex;flex-direction:row;">
-    @foreach (var doctor in Model)
-    {
-        <div class="card doctorBox" style="width: 28rem;margin-right:2em;">
-            <img class="card-img-top" src="~/images/profile-image.png" alt="Doctor" style="width:100%;height:auto">
-            <div class="card-body" style="padding:2em;">
-                <h5 class="card-title"><span style="font-weight:600;">@doctor.FullName</span></h5>
-                <p class="card-text">@doctor.Description</p>
-                <hr />
-                <a asp-controller="Doctors" asp-action="Details" asp-route-doctorId="@doctor.DoctorId" class="btn btn-primary btn-block">Ver detalles</a>
+<br />
+<br />
+<br />
+
+<div class="container">
+    <div>
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-info">@ViewBag.Success</div>
+        }
+        <h2>
+            <span style="margin-left:1em;">
+                Ver doctores
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("ADMINISTRATORS"))
+                    {
+                        <a class="btn btn-sm btn-outline-secondary" asp-controller="Doctors" asp-action="Create">Agregar doctor</a>
+                    }
+                }
+            </span>
+        </h2>
+    </div>
+    <br />
+    <div style="padding-left:2.25em;">
+        <div class="row">
+            <div class="col-md-4">
+                <span style="font-size:1.0rem;font-weight:500;">Filtrar por palabras claves</span>
+                <form class="form-inline" style="margin-top:1em;" method="get" asp-controller="Doctors" asp-action="Index">
+                    <div class="form-group">
+                        <input type="text" name="searchBy" class="form-control" />
+                    </div>
+                </form>
             </div>
         </div>
-    }
+        <div class="row">
+            <span style="padding:1em;">@ViewBag.search</span>
+        </div>
+    </div>
+    <br />
+    <div style="display:flex;flex-direction:row;">
+        @foreach (var doctor in Model)
+        {
+            <div class="card doctorBox" style="width: 25rem;margin-right:2em;">
+                @{var str = doctor.ProfilePicture ?? "~/images/profile-image.png";}
+                <img class="card-img-top" src="@str" alt="Doctor" style="width:100%;height:auto">
+                <div class="card-body" style="padding:2em;">
+                    <h5 class="card-title"><span style="font-weight:600;">@doctor.FullName</span></h5>
+                    <p class="card-text">@doctor.Description</p>
+                    <hr />
+                    <a asp-controller="Doctors" asp-action="Details" asp-route-doctorId="@doctor.DoctorId" class="btn btn-primary btn-block">Hacer cita</a>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>

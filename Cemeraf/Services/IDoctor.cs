@@ -13,5 +13,6 @@ namespace Cemeraf.Services
         Task<Doctor> Create(Doctor doctor);
         Task<Doctor> Delete(Doctor doctor);
         Task<Doctor> Modify(Doctor newDoctor, int doctorId);
+        Task<IEnumerable<Doctor>> FilterBy(List<string> words);
     }
 }

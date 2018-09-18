@@ -53,6 +53,19 @@ namespace Cemeraf.Services
             });
         }
 
+        public Task<IEnumerable<Doctor>> FilterBy(List<string> words)
+        {
+            return Task.Run(() => {
+
+                var doctors = _context.Doctors.Select(d => d);
+                foreach(string w in words)
+                {
+                    doctors.Where(d => d.Description.ToUpper().Contains(w));
+                }
+                return doctors.AsEnumerable();
+            });
+        }
+
         public Task<Doctor> GetById(int? id)
         {
             return Task.Run(() => {

@@ -5,16 +5,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@if (ViewBag.Success != null)
-{
-    <div class="alert alert-success">@ViewBag.Success</div>
-}
-@if(ViewBag.Error != null)
-{
-    <div class="alert alert-danger">
-        @ViewBag.Error
-    </div>
-}
 <h2>Create</h2>
 
 <h4>Doctor</h4>
@@ -42,6 +32,11 @@
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <input asp-for="ProfilePicture" class="form-control" />
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Birthdate" class="control-label"></label>

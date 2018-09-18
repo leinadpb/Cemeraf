@@ -6,20 +6,47 @@ using Microsoft.AspNetCore.Mvc;
 using Cemeraf.Models;
 using Cemeraf.Services;
 using Microsoft.AspNetCore.Authorization;
+using Cemeraf.ViewModels;
 
 namespace Cemeraf.Controllers
 {
     public class DoctorsController : Controller
     {
         private readonly DoctorService DoctorsService;
-        public DoctorsController(DoctorService doctorService)
+        private readonly SpecialtiesService SpecialtiesService;
+
+        public DoctorsController(DoctorService doctorService, SpecialtiesService specialtiesService)
         {
             DoctorsService = doctorService;
+            SpecialtiesService = specialtiesService;
         }
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult Index([FromRoute] string searchText)
         {
-            var doctors = DoctorsService.GetAll().Result;
+            IEnumerable<Doctor> doctors;
+
+            if (String.IsNullOrEmpty(searchText))
+            {
+                doctors = DoctorsService.GetAll().Result;
+            }
+            else
+            {
+                List<string> words = GetWholeWords(searchText); // in upper case, without spaces
+                doctors = DoctorsService.FilterBy(words).Result;
+            }
+            if(TempData["Success"] != null)
+            {
+                ViewBag.Success = TempData["Success"];
+            }
+            ViewBag.search = $"{doctors.Count()} doctores encontrados.";
+
             return View(doctors);
+        }
+
+        private List<string> GetWholeWords(string searchText)
+        {
+            return searchText.Trim().ToUpper().Split(",").ToList();
         }
 
         [Authorize("ADMINISTRATORS")]
@@ -58,14 +85,15 @@ namespace Cemeraf.Controllers
 
         [HttpPost]
         [Authorize("ADMINISTRATORS")]
-        public IActionResult Create(Doctor doctor)
+        public async Task<IActionResult> Create(Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                var savedDoctor = DoctorsService.Create(doctor);
+                var savedDoctor = await DoctorsService.Create(doctor);
+                
                 if(savedDoctor != null)
                 {
-                    ViewBag.Success = "El doctor ha sido creado exitosamente.";
+                    TempData["Success"] = "El doctor ha sido creado exitosamente.";
                     return RedirectToAction("Index");
                 }
                 else

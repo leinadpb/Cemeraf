@@ -13,6 +13,7 @@ namespace Cemeraf.Models
         public string Lastname { get; set; }
         public string FullName { get; set; }
         public string Description { get; set; }
+        public string ProfilePicture { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }

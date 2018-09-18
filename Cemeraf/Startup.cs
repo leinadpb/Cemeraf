@@ -39,6 +39,7 @@ namespace Cemeraf
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("CemerafConnection")));
@@ -73,7 +74,7 @@ namespace Cemeraf
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<CemerafUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -85,6 +86,8 @@ namespace Cemeraf
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            ApplicationDbInitializer.SeedUsers(userManager, Configuration.GetSection("UserAdmin:pwd").Value);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
